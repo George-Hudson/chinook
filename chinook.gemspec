@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'chinook/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'chinook'
+  spec.name          = 'captainu-chinook'
   spec.version       = Chinook::VERSION
   spec.authors       = ['Ben Kreeger']
   spec.email         = ['ben@captainu.com']

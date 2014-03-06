@@ -8,9 +8,9 @@ Add this line to your application's `Gemfile`, preferrably in the `:development`
 
 ``` ruby
 group :development do
-  gem 'chinook'
+  gem 'captainu-chinook'
   # or from git:
-  # gem 'chinook', git: 'https://github.com/captainu/chinook.git'
+  # gem 'captainu-chinook', git: 'https://github.com/captainu/chinook.git'
 end
 ```
 
