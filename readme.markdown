@@ -71,6 +71,19 @@ Pings the site after a [Passenger](phusionpassenger.com) deploy to ensure that i
 * Settings:
     - `:ping_url`: the URL you'd like to ping to wake up. *Environment specific.*
 
+### Symlink
+
+Symlinks directories from various other directories into your project.
+
+#### Symlink shared to public
+
+Symlinks directories from `deploy_dir/shared` into your project's `deploy_dir/current/public` directory.
+
+* Tasks: `chinook:symlink_shared_to_public`
+* Hook: `after 'deploy:update_code', 'app:symlink_public_directories'`
+* Settings:
+    - `:public_directories`: a Ruby array of the directories you'd like to symlink from `shared`.
+
 ## Contributing
 
 1. [Fork it](https://github.com/captainu/chinook/fork).

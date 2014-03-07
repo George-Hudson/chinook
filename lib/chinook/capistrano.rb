@@ -3,4 +3,4 @@ module Chinook
   end
 end
 
-%w(campfire passenger ping).each { |m| require "chinook/capistrano/#{m}" }
+%w(campfire passenger ping symlink).each { |m| require "chinook/capistrano/#{m}" }
