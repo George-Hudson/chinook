@@ -80,7 +80,7 @@ Symlinks directories from various other directories into your project.
 Symlinks directories from `deploy_dir/shared` into your project's `deploy_dir/current/public` directory.
 
 * Tasks: `chinook:symlink_shared_to_public`
-* Hook: `after 'deploy:update_code', 'app:symlink_public_directories'`
+* Hook: `after 'deploy:update_code', 'chinook:symlink_shared_to_public'`
 * Settings:
     - `:public_directories`: a Ruby array of the directories you'd like to symlink from `shared`.
 
