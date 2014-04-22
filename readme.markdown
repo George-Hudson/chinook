@@ -44,9 +44,11 @@ Notifies [Campfire](https://campfirenow.com) when a deploy starts and/or stops. 
 
 * Tasks:
     - `chinook:campfire_start`
+    - `chinook:campfire_fail`
     - `chinook:campfire_end`
 * Hooks:
     - `before 'deploy', 'chinook:campfire_start'`
+    - `after 'deploy:rollback', 'chinook:campfire_rollback'`
     - `after 'deploy', 'chinook:campfire_end'`
 * Settings:
     - `:campfire_room_name`: the room where notifications will be posted.

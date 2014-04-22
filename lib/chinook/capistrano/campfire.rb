@@ -7,7 +7,7 @@ module Chinook::Capistrano
     def self.load_into(configuration)
       configuration.load do
         namespace :chinook do
-          desc 'Lets a Campfire room know about a deploy that is about to start.'
+          desc 'Lets a Campfire room know about a deploy that has begun.'
           task :campfire_start, except: { no_release: true } do
             unless exists?(:campfire_room_name) && exists?(:campfire_token) && exists?(:campfire_account_name)
               logger.info 'Cannot notify Campfire without :campfire_room_name, :campfire_token, and :campfire_account_name. Skipping task.'
@@ -27,7 +27,27 @@ module Chinook::Capistrano
             room.speak(message)
           end
 
-          desc 'Lets a Campfire room know about a deploy has finished.'
+          desc 'Lets a Campfire room know about a deploy that is rolling back.'
+          task :campfire_rollback, except: { no_release: true } do
+            unless exists?(:campfire_room_name) && exists?(:campfire_token) && exists?(:campfire_account_name)
+              logger.info 'Cannot notify Campfire without :campfire_room_name, :campfire_token, and :campfire_account_name. Skipping task.'
+              next
+            end
+
+            project_name = fetch(:project_name, application)
+            git_username = `git config user.name`.chomp
+
+            message = "#{git_username}'s deploy of #{project_name} to #{stage} has been rolled back at #{Time.now.strftime('%r %Z')}."
+            room_name = fetch(:campfire_room_name)
+            token = fetch(:campfire_token)
+            account_name = fetch(:campfire_account_name)
+
+            campfire = Tinder::Campfire.new(account_name, token: token)
+            room = campfire.find_room_by_name(room_name)
+            room.speak(message)
+          end
+
+          desc 'Lets a Campfire room know about a deploy that has finished.'
           task :campfire_end, except: { no_release: true } do
             unless exists?(:campfire_room_name) && exists?(:campfire_token) && exists?(:campfire_account_name)
               logger.info 'Cannot notify Campfire without :campfire_room_name, :campfire_token, and :campfire_account_name. Skipping task.'
