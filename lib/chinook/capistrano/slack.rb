@@ -18,6 +18,7 @@ module Chinook::Capistrano
             git_username = `git config user.name`.chomp
 
             message = "#{git_username} started a deploy of #{project_name} to #{stage} at #{Time.now.strftime('%r %Z')}."
+            message = ":shipit: #{message}" if fetch(:slack_shipit)
 
             slack = ::Slack::Notifier.new(fetch(:slack_team),
                                           fetch(:slack_token))
@@ -40,6 +41,7 @@ module Chinook::Capistrano
             git_username = `git config user.name`.chomp
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} has been rolled back at #{Time.now.strftime('%r %Z')}."
+            message = ":shipit: #{message}" if fetch(:slack_shipit)
 
             slack = ::Slack::Notifier.new(fetch(:slack_team),
                                           fetch(:slack_token))
@@ -62,6 +64,7 @@ module Chinook::Capistrano
             git_username = `git config user.name`.chomp
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} finished at #{Time.now.strftime('%r %Z')}."
+            message = ":shipit: #{message}" if fetch(:slack_shipit)
 
             slack = ::Slack::Notifier.new(fetch(:slack_team),
                                           fetch(:slack_token))
