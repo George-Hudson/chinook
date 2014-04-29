@@ -89,6 +89,7 @@ Notifies [Slack](https://slack.com) when a deploy starts and/or stops. Uses the 
     - `:slack_channel`: the room/channel where notifications will be posted.
     - `:slack_token`: the Slack webhook token for your team.
     - `:slack_team`: the subdomain of your Slack account (**this-part**.slack.com).
+    - `:slack_username`: the username to be used when posting the message.
     - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
 
 ### Symlink

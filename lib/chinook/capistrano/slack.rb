@@ -19,8 +19,8 @@ module Chinook::Capistrano
 
             message = "#{git_username} started a deploy of #{project_name} to #{stage} at #{Time.now.strftime('%r %Z')}."
 
-            slack = Slack::Notifier.new(fetch(:slack_team),
-                                        token: fetch(:slack_token))
+            slack = ::Slack::Notifier.new(fetch(:slack_team),
+                                          fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
             slack.ping message
@@ -38,8 +38,8 @@ module Chinook::Capistrano
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} has been rolled back at #{Time.now.strftime('%r %Z')}."
 
-            slack = Slack::Notifier.new(fetch(:slack_team),
-                                        token: fetch(:slack_token))
+            slack = ::Slack::Notifier.new(fetch(:slack_team),
+                                          fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
             slack.ping message
@@ -58,8 +58,8 @@ module Chinook::Capistrano
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} finished at #{Time.now.strftime('%r %Z')}."
 
-            slack = Slack::Notifier.new(fetch(:slack_team),
-                                        token: fetch(:slack_token))
+            slack = ::Slack::Notifier.new(fetch(:slack_team),
+                                          fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
             slack.ping message
