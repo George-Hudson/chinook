@@ -73,6 +73,24 @@ Pings the site after a [Passenger](phusionpassenger.com) deploy to ensure that i
 * Settings:
     - `:ping_url`: the URL you'd like to ping to wake up. *Environment specific.*
 
+### Slack notification
+
+Notifies [Slack](https://slack.com) when a deploy starts and/or stops. Uses the value of `git config user.name` for identifying the deploying user.
+
+* Tasks:
+    - `chinook:slack_start`
+    - `chinook:slack_fail`
+    - `chinook:slack_end`
+* Hooks:
+    - `before 'deploy', 'chinook:slack_start'`
+    - `after 'deploy:rollback', 'chinook:slack_rollback'`
+    - `after 'deploy', 'chinook:slack_end'`
+* Settings:
+    - `:slack_channel`: the room/channel where notifications will be posted.
+    - `:slack_token`: the Slack webhook token for your team.
+    - `:slack_team`: the subdomain of your Slack account (**this-part**.slack.com).
+    - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
+
 ### Symlink
 
 Symlinks directories from various other directories into your project.
