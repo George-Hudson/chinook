@@ -23,7 +23,10 @@ module Chinook::Capistrano
                                           fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
-            slack.ping message
+
+            icon = fetch(:slack_icon_url)
+            opts = { icon_url: icon } if icon
+            slack.ping message, opts
           end
 
           desc 'Lets a Slack channel know about a deploy that is rolling back.'
@@ -42,8 +45,10 @@ module Chinook::Capistrano
                                           fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
-            slack.ping message
 
+            icon = fetch(:slack_icon_url)
+            opts = { icon_url: icon } if icon
+            slack.ping message, opts
           end
 
           desc 'Lets a Slack channel know about a deploy that has finished.'
@@ -62,8 +67,10 @@ module Chinook::Capistrano
                                           fetch(:slack_token))
             slack.channel = fetch(:slack_channel)
             slack.username = fetch(:slack_username)
-            slack.ping message
 
+            icon = fetch(:slack_icon_url)
+            opts = { icon_url: icon } if icon
+            slack.ping message, opts
           end
         end
       end
