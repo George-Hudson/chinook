@@ -56,6 +56,24 @@ Notifies [Campfire](https://campfirenow.com) when a deploy starts and/or stops. 
     - `:campfire_account_name`: the subdomain of your Campfire account (**this-part**.campfirenow.com).
     - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
 
+### HipChat notification
+
+Notifies [HipChat](https://hipchat.com) when a deploy starts and/or stops. Uses the value of `git config user.name` for identifying the deploying user.
+
+* Tasks:
+    - `chinook:hipchat_start`
+    - `chinook:hipchat_fail`
+    - `chinook:hipchat_end`
+* Hooks:
+    - `before 'deploy', 'chinook:hipchat_start'`
+    - `after 'deploy:rollback', 'chinook:hipchat_rollback'`
+    - `after 'deploy', 'chinook:hipchat_end'`
+* Settings:
+    - `:hipchat_room`: the room where notifications will be posted.
+    - `:hipchat_token`: the API token of the user that this task will post as.
+    - `:hipchat_username`: the username that will display as the poster of this notification; default is "Deployment."
+    - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
+
 ### Passenger restart
 
 Restarts [Passenger](https://phusionpassenger.com) after deploy by touching the file at `tmp/restart.txt` on the receiving server.
