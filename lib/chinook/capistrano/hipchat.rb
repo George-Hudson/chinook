@@ -37,7 +37,6 @@ module Chinook::Capistrano
             git_username = `git config user.name`.chomp
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} has been rolled back at #{Time.now.strftime('%r %Z')}."
-            message = ":shipit: #{message}" if fetch(:hipchat_shipit)
 
             hipchat = ::HipChat::Client.new(fetch(:hipchat_token),
                                             api_version: 'v2')
@@ -57,7 +56,6 @@ module Chinook::Capistrano
             git_username = `git config user.name`.chomp
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} finished at #{Time.now.strftime('%r %Z')}."
-            message = ":shipit: #{message}" if fetch(:hipchat_shipit)
 
             hipchat = ::HipChat::Client.new(fetch(:hipchat_token),
                                             api_version: 'v2')
