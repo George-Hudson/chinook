@@ -19,8 +19,7 @@ module Chinook::Capistrano
 
             message = "#{git_username} started a deploy of #{project_name} to #{stage} at #{Time.now.strftime('%r %Z')}."
 
-            hipchat = ::HipChat::Client.new(fetch(:hipchat_token),
-                                            api_version: 'v2')
+            hipchat = ::HipChat::Client.new(fetch(:hipchat_token))
             room = fetch(:hipchat_room)
             username = fetch(:hipchat_username, 'Deployment')
             hipchat[room].send(username, message, color: 'yellow')
@@ -38,8 +37,7 @@ module Chinook::Capistrano
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} has been rolled back at #{Time.now.strftime('%r %Z')}."
 
-            hipchat = ::HipChat::Client.new(fetch(:hipchat_token),
-                                            api_version: 'v2')
+            hipchat = ::HipChat::Client.new(fetch(:hipchat_token))
             room = fetch(:hipchat_room)
             username = fetch(:hipchat_username, 'Deployment')
             hipchat[room].send(username, message, color: 'red')
@@ -57,8 +55,7 @@ module Chinook::Capistrano
 
             message = "#{git_username}'s deploy of #{project_name} to #{stage} finished at #{Time.now.strftime('%r %Z')}."
 
-            hipchat = ::HipChat::Client.new(fetch(:hipchat_token),
-                                            api_version: 'v2')
+            hipchat = ::HipChat::Client.new(fetch(:hipchat_token))
             room = fetch(:hipchat_room)
             username = fetch(:hipchat_username, 'Deployment')
             hipchat[room].send(username, message, color: 'green')

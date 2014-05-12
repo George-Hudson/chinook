@@ -70,7 +70,7 @@ Notifies [HipChat](https://hipchat.com) when a deploy starts and/or stops. Uses 
     - `after 'deploy', 'chinook:hipchat_end'`
 * Settings:
     - `:hipchat_room`: the room where notifications will be posted.
-    - `:hipchat_token`: the API token of the user that this task will post as.
+    - `:hipchat_token`: the v1 API token that this task will post with.
     - `:hipchat_username`: the username that will display as the poster of this notification; default is "Deployment."
     - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
 
