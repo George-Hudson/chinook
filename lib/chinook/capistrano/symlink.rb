@@ -12,7 +12,7 @@ module Chinook::Capistrano
             logger.info "Symlinking directories from shared into public."
             fetch(:public_directories, []).each do |directory|
               source = File.join(deploy_to, 'shared', directory)
-              FileUtils.mkdir_p(source) unless Dir.exist?(source)
+              invoke_command "mkdir -p #{source}", via: run_method
               destination = File.join(release_path, 'public', directory)
               invoke_command "ln -nfs #{source} #{destination}", via: run_method
             end
