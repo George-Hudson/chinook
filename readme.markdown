@@ -38,24 +38,6 @@ set :ping_url, 'http://some-url-to-ping.example.com'
 after 'deploy', 'chinook:some_task'
 ```
 
-### Campfire notification
-
-Notifies [Campfire](https://campfirenow.com) when a deploy starts and/or stops. Uses the value of `git config user.name` for identifying the deploying user.
-
-* Tasks:
-    - `chinook:campfire_start`
-    - `chinook:campfire_fail`
-    - `chinook:campfire_end`
-* Hooks:
-    - `before 'deploy', 'chinook:campfire_start'`
-    - `after 'deploy:rollback', 'chinook:campfire_rollback'`
-    - `after 'deploy', 'chinook:campfire_end'`
-* Settings:
-    - `:campfire_room_name`: the room where notifications will be posted.
-    - `:campfire_token`: the API token of the user that this task will post as.
-    - `:campfire_account_name`: the subdomain of your Campfire account (**this-part**.campfirenow.com).
-    - `:project_name`: the name of your project as it will show up in the notifications. *Optional; if not supplied, the value of `:application` will be used.*
-
 ### HipChat notification
 
 Notifies [HipChat](https://hipchat.com) when a deploy starts and/or stops. Uses the value of `git config user.name` for identifying the deploying user.
